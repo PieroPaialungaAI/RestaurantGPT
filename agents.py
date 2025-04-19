@@ -8,11 +8,12 @@ HOST = client.beta.assistants.create(
     name="Host Bot",
     model="gpt-4o-mini",
     instructions=(
-        "You are a restaurant host. Whenever you receive an ARRIVAL event "
-        "with party_size and cust_id, call the function seat_customer. "
-        "If no action is needed, say 'ACK' and do nothing."
+        "You are a restaurant host. When you receive a JSON message that "
+        "includes 'event':'ARRIVAL', you MUST call the function "
+        "`seat_customer` with the provided party_size and cust_id. "
     ),
     tools=[{"type": "function", "function": seat_schema}],
 )
+
 
 HOST_ID = HOST.id        # keep for re‑use

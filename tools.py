@@ -14,6 +14,7 @@ def seat_customer(party_size: int, cust_id: int) -> str:
     else:
         STATE.queue.append(cust_id)
         msg = f"⏳ Queued customer {cust_id}"
+    print(msg)
     STATE.log.append(f"[{STATE.clock:05}s] {msg}")
     return msg
 
