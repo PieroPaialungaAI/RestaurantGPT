@@ -8,6 +8,7 @@ from agents import Runner    # orchestrator
 # 1) initialise the shared state
 tools.STATE = RestaurantState(tables=[Table(id=i, capacity=2) for i in range(3)])
 
+
 # 2) main loop
 next_cust = 1
 while tools.STATE.clock < 3600:   # simulate one hour
