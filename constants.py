@@ -1,1 +1,1 @@
-MENU_FILE = "deault_menu.csv"
+MENU_FILE = "default_menu.csv"

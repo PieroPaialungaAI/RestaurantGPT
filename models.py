@@ -1,6 +1,6 @@
 from __future__ import annotations
 from pydantic import BaseModel
-from typing import Optional, Literal
+from typing import Optional, Literal, List
 
 class Table(BaseModel):
     id: int
@@ -25,7 +25,7 @@ class MenuItem(BaseModel):
     id: int
     category: str
     name: str
-    descritption: str
+    description: str    # ← corrected spelling
     prep_time: int 
     price: float 
 
