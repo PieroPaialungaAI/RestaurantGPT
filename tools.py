@@ -5,6 +5,8 @@ from agents import function_tool
 import os, json
 from constants import * 
 # singleton state (will be set by sim.py)
+
+
 STATE: RestaurantState
 
 def _seat_customer_impl(party_size: int, cust_id: int) -> str:
@@ -24,11 +26,21 @@ def _seat_customer_impl(party_size: int, cust_id: int) -> str:
 def release_tables() -> None:
     # 1) Free any tables whose customers are done
     for t in STATE.tables:
-        # if table is occupied AND the leave time has passed
-        if t.status == "occupied" and t.leave_at is not None \
-           and STATE.clock >= t.leave_at:
+        if (
+            t.status == "occupied"
+            and t.leave_at is not None
+            and STATE.clock >= t.leave_at
+        ):
             STATE.log.append(f"[{STATE.clock:05}s] 💸 Customer {t.occupied_by} left T{t.id}")
+            # clear old orders for this table
+            STATE.order_items = [
+                oi for oi in STATE.order_items
+                if oi.table_id != t.id
+            ]
+            # reset the table
             t.status, t.occupied_by, t.leave_at = "open", None, None
+
+    # 2) Seat anyone in the queue
     for cust in STATE.queue[:]:
         _seat_customer_impl(1, cust)
     STATE.queue.clear()
@@ -64,28 +76,23 @@ def place_order(table_id: int, item_ids: list[int]) -> str:
     return f"Ordered {summary} for table {table_id}"
 
 
-
 def cook_and_serve() -> None:
-    """
-    Serve any OrderItems whose ready_at <= clock and not yet served,
-    in the order: Wine → Appetizer → First Course → Second Course → Dessert.
-    """
-    # collect ready but unserved items
-    ready = [
-        oi for oi in STATE.order_items
-        if oi.served_at is None and STATE.clock >= oi.ready_at
-    ]
-    # sort by category priority
+    ready = [oi for oi in STATE.order_items
+             if oi.served_at is None and STATE.clock >= oi.ready_at]
     ready.sort(key=lambda oi: FOOD_PRIORITY.get(oi.category, 999))
     for oi in ready:
-        # mark served
         oi.served_at = STATE.clock
-        # revenue
+
+        # assign a dining duration of 5–15 seconds (for quick demo)
+        dining_time = random.randint(5, 15)
+        tbl = next(t for t in STATE.tables if t.id == oi.table_id)
+        tbl.leave_at = STATE.clock + dining_time
+
         price = next(m.price for m in STATE.menu if m.id == oi.item_id)
         STATE.revenue += price
         STATE.log.append(
-            f"[{STATE.clock:05}s] 🍽️ Served {oi.category} '{oi.item_id}' "
-            f"to T{oi.table_id} (+${price:.2f})"
+          f"[{STATE.clock:05}s] 🍽️ Served {oi.category} '{oi.item_id}' "
+          f"to T{oi.table_id} (+${price:.2f}); will leave at {tbl.leave_at}s"
         )
 
 # This is the tool the Agent sees:

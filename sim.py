@@ -34,7 +34,7 @@ def main():
         # 2b) take orders on any newly seated tables
         for t in tools.STATE.tables:
             # has this table already placed *any* orders?
-            already_ordered = any(oi.table_id == t.id for oi in tools.STATE.order_items)
+            already_ordered = any(oi.table_id == t.id and oi.cust_id == t.occupied_by for oi in tools.STATE.order_items)
             if t.status == "occupied" and not already_ordered:
                 order_event = {
                     "event":       "ORDER",
