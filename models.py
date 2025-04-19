@@ -19,3 +19,14 @@ class RestaurantState(BaseModel):
     def open_tables(self, party: int) -> list[Table]:
         return [t for t in self.tables
                 if t.status == "open" and t.capacity >= party]
+    
+
+class MenuItem(BaseModel):
+    id: int
+    category: str
+    name: str
+    descritption: str
+    prep_time: int 
+    price: float 
+
+MENU: List[MenuItem] = []

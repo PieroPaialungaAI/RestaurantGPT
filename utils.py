@@ -1,6 +1,6 @@
 # menu_loader.py
 import pandas as pd
-from menu import MENU, MenuItem
+from models import *
 
 def load_menu_from_csv(path: str) -> None:
     """
