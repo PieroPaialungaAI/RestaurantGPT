@@ -29,3 +29,17 @@ def release_tables():
     STATE.queue.clear()
     for cust in still_waiting:
         seat_customer(1, cust)            # party size = 1 for now
+
+
+seat_schema = {
+    "name": "seat_customer",
+    "description": "Assign a customer to a table or put them in the queue.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "party_size": {"type": "integer"},
+            "cust_id": {"type": "integer"}
+        },
+        "required": ["party_size", "cust_id"]
+    }
+}

@@ -16,6 +16,7 @@ async def call_host(arrival):
         role="user",
         content=json.dumps({"event": "ARRIVAL", **arrival})
     )
+    
     run = openai.beta.threads.runs.create(
         thread_id=thread.id,
         assistant_id=HOST.id
