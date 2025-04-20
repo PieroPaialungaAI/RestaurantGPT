@@ -1,8 +1,17 @@
-from llm_free_models import * 
+from llm_models import * 
 import random
 
 
 if __name__ == "__main__":
-    random.seed(42)                       # for reproducibility
-    R = Restaurant(num_tables=3, arrival_prob=0.5, tick_length=10)
-    R.run(total_time=180)  # simulate 3 hours = 180 minutes
+    random.seed(42)
+    menu = preprocess_menu(MENU_FILE, eat_time_factor=0.5)
+    R = Restaurant(
+        num_tables=5,
+        arrival_prob=0.7,
+        tick_length=1,
+        real_pause=5.0,
+        query_prob=0.4,
+        menu=menu
+    )
+    R.run(total_time=60)
+

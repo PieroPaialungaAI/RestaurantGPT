@@ -18,11 +18,11 @@ menu_agent = Agent(name = "Chef_suggester",
 entertainer_agent = Agent(name = "Entertainer",
                           instructions = ("You are a helpful server that is keeping the customers busy while they wait."
                           "You can not provide any discount or offer, but they can ask questions about the menu, which you can get from the"
-                          "get_menu functions. They can also ask you how long the wait is going to take. Their information is in check_wait_time"
+                          "get_menu functions. They can also ask you how long the line is going to be to get in. Their information is in the waiting_time"
                           "If the user_status is 'queue', just provide the waiting time with kindness, based on the length. Otherwise, "
                           "if the user_status is 'food' it means they are waiting on food. Check 'order' and provide a funny reference on"
                           "their waiting time. For example 'your wait time for pasta is 5 minutes, it looks like the chef is putting sauce on it!' "),
-    tools = [get_menu,check_wait_time])
+    tools = [get_menu])
 
 
 customer_agent = Agent(name = "Customer",
