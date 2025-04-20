@@ -34,7 +34,7 @@ customer_agent = Agent(name = "Customer",
 
 
 def call_agent(runner, msg, class_agent = "wait"):
-    if class_agent == "host":
+    if class_agent == "entertainer":
         return runner.run_sync(entertainer_agent, msg)
     
     elif class_agent == "waiter":

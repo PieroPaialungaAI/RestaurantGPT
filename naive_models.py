@@ -134,17 +134,34 @@ class Restaurant:
         if queue_ids and (not seated_ids or random.random() < 0.7):
             cid = random.choice(queue_ids)
             wait = self.estimate_queue_time(cid)
+            cname = self.names[cid]
             print(f"[{self.clock:04}m] ❓ Customer {cid}: How long will I be in line?")
             print(f"[{self.clock:04}m] ➡️ Estimated wait for customer {cid}: {wait}m")
+            waiting_message = {
+                "customer_id":   cid,
+                "customer_name": cname,
+                "type":          "line",
+                "wait_min":      wait,
+                "next_food": None
+            }
+            
         elif seated_ids:
             cid = random.choice(seated_ids)
             wait = self.estimate_food_time(cid)
+            table = next(t for t in self.tables if t.cust_id == cid)
+            food  = table.plate
             print(f"[{self.clock:04}m] ❓ Customer {cid}: How long will the food take me?")
             if wait is None:
                 print(f"[{self.clock:04}m] ➡️ Ready now!")
             else:
                 print(f"[{self.clock:04}m] ➡️ Estimated food wait for customer {cid}: {wait}m")
-
+            waiting_message = {
+                "customer_id":   cid,
+                "customer_name": cname,
+                "type":          "line",
+                "wait_min":      wait,
+                "next_food": food
+            }
     def tick_once(self):
         self.arrive()
         self.process_cooking()

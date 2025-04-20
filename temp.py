@@ -11,4 +11,5 @@ customer_output = call_agent(runner = runner, msg= '', class_agent="customer").f
 print(customer_output)
 menu_asker_output = call_agent(runner = runner, msg = json.dumps(customer_output), class_agent="waiter").final_output
 print(extract_json_dict(menu_asker_output))
+
 # 1) initialise the shared state

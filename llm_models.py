@@ -11,6 +11,14 @@ from constants import *
 from agents import Runner
 # list of first names from your NAMES constant
 # assume NAMES = [ ... ] is defined in constants.py
+import logging
+
+# Set up logging
+
+
+
+def log(msg):
+    logging.info(msg)
 
 class Table:
     def __init__(self, id, capacity=1):
@@ -38,6 +46,7 @@ class Table:
                f"ordering {len(orders)} dishes; first: {plate!r} "
                f"(cook {cook_time}m, eat {eat_time}m)")
         print(msg); sys.stdout.flush()
+        
 
     def start_eating(self, clock):
         self.current_phase = "eating"
@@ -93,6 +102,23 @@ class Restaurant:
         self.runner = Runner()
         self.query_prob = query_prob
         self.names = {}
+        self.load_logging()
+
+    def load_logging(self):
+        logging.getLogger("httpx").setLevel(logging.WARNING)
+        logging.getLogger("openai").setLevel(logging.WARNING)
+        logging.getLogger("urllib3").setLevel(logging.WARNING)
+        logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s',
+                            datefmt='%H:%M:%S', handlers=[
+        logging.FileHandler("restaurant_log.txt", mode='w'),
+        logging.StreamHandler(sys.stdout)])
+
+
+    def log_to_msg(self,msg):
+        logging.info(msg)
+    
+
+
 
     def open_tables(self):
         return [t for t in self.tables if t.is_free]
@@ -102,10 +128,14 @@ class Restaurant:
         #n = random.randint(1, 3)
         #return random.sample(self.menu, n)
         customer_text = call_agent(runner = self.runner, msg= '', class_agent="customer").final_output
-        print(f'The customer {cname} is talking to the waiter, saying this {customer_text}')
+        msg = f'The customer {cname} is talking to the waiter, saying this {customer_text}'
+        print(msg)
+        self.log_to_msg(msg)
         menu_asker_output = call_agent(runner = self.runner, msg = json.dumps(customer_text), class_agent="waiter").final_output
         output = extract_json_dict(menu_asker_output)
-        print(f'The processed response from our LLM is {output}')
+        msg = f'The processed response from our LLM is {output}'
+        print(msg)
+        self.log_to_msg(msg)
         if output['status'] == 'successfull':
             return filter_menu_items(output['food'])
         else:
@@ -134,7 +164,9 @@ class Restaurant:
                 table.seat(cid, cname, self.clock, orders)
             else:
                 self.queue.append(cid)
-                print(f"[{self.clock:04}m] ⏳ Queued {cname} (#{cid}) – waiting")
+                msg = f"[{self.clock:04}m] ⏳ Queued {cname} (#{cid}) – waiting"
+                print(msg)
+                self.log_to_msg(msg)
 
     def process_cooking(self):
         for t in self.tables:
@@ -184,18 +216,61 @@ class Restaurant:
     def handle_random_query(self):
         queue_ids = list(self.queue)
         seated_ids = [t.cust_id for t in self.tables if not t.is_free]
-        if queue_ids and (not seated_ids or random.random()<0.7):
+        if queue_ids and (not seated_ids or random.random() < 0.7):
             cid = random.choice(queue_ids)
-            cname = self.names[cid]
             wait = self.estimate_queue_time(cid)
-            print(f"[{self.clock:04}m] ❓ {cname} (#{cid}): How long will I be in line?")
-            print(f"[{self.clock:04}m] ➡️ Estimated wait: {wait}m")
+            cname = self.names[cid]
+            msg = f"[{self.clock:04}m] ❓ Customer {cid}: How long will I be in line?"
+            print(msg)
+            self.log_to_msg(msg)
+
+            msg = f"[{self.clock:04}m] ➡️ Estimated wait for customer {cid}: {wait}m"
+            print(msg)
+            self.log_to_msg(msg)
+            waiting_message = {
+                "customer_id":   cid,
+                "customer_name": cname,
+                "type":          "line",
+                "wait_min":      wait,
+                "next_food": None
+            }
+            output_llm = call_agent(class_agent="entertainer", runner = self.runner, msg = json.dumps(waiting_message))
+            msg = f"Our LLM took care of {cname} with this: {output_llm}"
+            print(msg)
+            self.log_to_msg(msg)
+            
         elif seated_ids:
             cid = random.choice(seated_ids)
-            cname = self.names[cid]
             wait = self.estimate_food_time(cid)
-            print(f"[{self.clock:04}m] ❓ {cname} (#{cid}): How long until my next dish?")
-            print(f"[{self.clock:04}m] ➡️ Estimated time until next dish: {wait}m")
+            table = next(t for t in self.tables if t.cust_id == cid)
+            food  = table.plate
+            cname = self.names[cid]
+            msg = f"[{self.clock:04}m] ❓ Customer {cid}: How long will the food take me?"
+            print(msg)
+            self.log_to_msg(msg)
+            if wait is None:
+                msg = f"[{self.clock:04}m] ➡️ Ready now!"
+                print(msg)
+                self.log_to_msg(msg)
+            else:
+                msg = f"[{self.clock:04}m] ➡️ Estimated food wait for customer {cid}: {wait}m"
+                print(msg)
+                self.log_to_msg(msg)
+            waiting_message = {
+                "customer_id":   cid,
+                "customer_name": cname,
+                "type":          "line",
+                "wait_min":      wait,
+                "next_food": food
+            }
+            output_llm = call_agent(class_agent="entertainer", runner = self.runner, msg = json.dumps(waiting_message))
+            msg = f"Our LLM took care of {cname} with this: {output_llm}"
+            print(msg)
+            self.log_to_msg(msg)
+
+
+
+
 
     def tick_once(self):
         self.arrive()
@@ -211,9 +286,13 @@ class Restaurant:
         while self.clock < total_time:
             self.tick_once()
         free = sum(t.is_free for t in self.tables)
-        print(f"\n--- END OF SHIFT ---\n{free}/{len(self.tables)} tables free at {self.clock}m.")
+        msg = f"\n--- END OF SHIFT ---\n{free}/{len(self.tables)} tables free at {self.clock}m."
+        print(msg)
+        self.log_to_msg(msg)
 
 if __name__ == "__main__":
+
+    
     random.seed(42)
     menu = preprocess_menu(MENU_FILE, eat_time_factor=0.5)
     R = Restaurant(
@@ -221,7 +300,7 @@ if __name__ == "__main__":
         arrival_prob=0.7,
         tick_length=1,
         real_pause=5.0,
-        query_prob=0.4,
+        query_prob=0.8,
         menu=menu
     )
     R.run(total_time=60)
