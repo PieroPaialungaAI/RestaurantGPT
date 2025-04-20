@@ -85,52 +85,24 @@ python llm_models_gui.py
 
 ## 📸 Preview
 
-[10:19:41] The customer Emma is talking to the waiter, saying this Here's the menu:
+[12:31:23] The customer Emma is talking to the waiter, saying this I'd like to start with the **Bruschetta** for the appetizer. Then, I'll have the **Spaghetti Carbonara** for the first course. For dessert, I'll enjoy the **Tiramisu**. 
 
-### Appetizers
-- **Bruschetta** - $5.00
-- **Caprese Salad** - $7.00
-- **Arancini** - $6.50
-- **Prosciutto e Melone** - $8.00
-- **Burrata** - $9.50
-
-### First Courses
-- **Spaghetti Carbonara** - $10.00
-- **Fettuccine Alfredo** - $11.00
-- **Lasagna** - $12.00
-- **Risotto alla Milanese** - $13.50
-- **Gnocchi al Pesto** - $11.50
-
-### Second Courses
-- **Pollo alla Cacciatora** - $14.00
-- **Bistecca alla Fiorentina** - $25.00
-- **Osso Buco** - $22.00
-- **Saltimbocca alla Romana** - $18.00
-- **Branzino al Forno** - $19.00
-
-### Wines
-- **Chianti Classico** - $8.00
-- **Prosecco** - $7.50
-- **Barolo** - $12.00
-- **Nero d’Avola** - $9.00
-- **Pinot Grigio** - $7.00
-
-### Desserts
-- **Tiramisu** - $6.00
-- **Panna Cotta** - $5.50
-- **Cannoli** - $6.50
-- **Gelato al Limone** - $5.00
-- **Affogato al Caffè** - $6.00
-
-Do you know what you'd like, or would you like some recommendations based on your preferences?
-[10:19:42] The processed response from our LLM is {'food': None, 'status': 'unsuccessfull'}
-[10:19:42] [0000m] ❓ Customer 1: How long will the food take me?
-[10:19:42] [0000m] ➡️ Estimated food wait for customer 1: 15m
-[10:19:44] Our LLM took care of Emma with this: RunResult:
+Could you also recommend a wine to go with this meal?
+[12:31:25] The processed response from our LLM is {'food': ['Bruschetta', 'Spaghetti Carbonara', 'Tiramisu', 'Chianti Classico'], 'status': 'successful'}
+[12:31:25] [0000m] ❓ Customer 1: How long will the food take me?
+[12:31:25] [0000m] ➡️ Estimated food wait for customer 1: 15m
+[12:31:26] Our LLM took care of Emma with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hi Emma! It looks like the line is about 15 minutes right now. Just enough time to imagine the delicious Risotto alla Milanese waiting for you. Hang in there, it'll be worth the wait! 🍽️😊
----
+    Hi Emma! Thank you for your patience. The wait to get in is about 15 minutes. Almost there—just enough time to start dreaming about that delicious Risotto alla Milanese! 🍽️
+- 1 new item(s)
+- 1 raw response(s)
+- 0 input guardrail result(s)
+- 0 output guardrail result(s)
+(See `RunResult` for more details)
+[12:31:31] The customer Liam is talking to the waiter, saying this I'd like to start with a **Bruschetta**, followed by the **Spaghetti Carbonara**. Could I also have a glass of **Chianti Classico** wine? For dessert, I'll have the **Tiramisu**. Thank you!
+[12:31:33] The processed response from our LLM is {'food': ['Bruschetta', 'Spaghetti Carbonara', 'Chianti Classico', 'Tiramisu'], 'status': 'successfull'}
+
 
 ## 🤔 Future Plans
 
