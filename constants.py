@@ -7,3 +7,8 @@ FOOD_PRIORITY = {
     "Second Course": 3,
     "Dessert": 4,
 }
+
+END_TIME = 3600
+ARRIVAL_PROB = 0.33
+TICK = 60
+PAUSE = 0.5

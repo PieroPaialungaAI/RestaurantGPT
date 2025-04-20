@@ -15,6 +15,7 @@ MENU: List[MenuItem] = []
 
 class OrderItem(BaseModel):
     table_id: int
+    cust_id:   int             # ← new field
     item_id:   int
     category:  str
     placed_at: int
