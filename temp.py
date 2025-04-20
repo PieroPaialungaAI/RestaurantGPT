@@ -1,15 +1,14 @@
 # sim.py
 import time, random, json
-from models import RestaurantState, Table
-import tools
-from custom_agents import HOST
-from agents import Runner    # orchestrator
+from custom_agents import *
 from utils import *
 from constants import * 
+from agents import Runner
 
-
+print(customer_agent)
+runner = Runner()
+customer_output = call_agent(runner = runner, msg= '', class_agent="customer").final_output
+print(customer_output)
+menu_asker_output = call_agent(runner = runner, msg = json.dumps(customer_output), class_agent="waiter").final_output
+print(extract_json_dict(menu_asker_output))
 # 1) initialise the shared state
-tools.STATE = RestaurantState(tables=[Table(id=i, capacity=2) for i in range(3)])
-next_cust = 1
-load_menu_from_csv(MENU_FILE)
-print(MENU)

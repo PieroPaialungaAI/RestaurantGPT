@@ -1,36 +1,46 @@
-# agents.py
+# custom_agents.py
 import os, json
-from agents import Agent, Runner, function_tool
-import os, json
-from tools import *
+from openai import OpenAI
+from agents import Agent
+from newtools import * 
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"),
+                default_headers={"OpenAI-Beta":"assistants=v2"})
 
 
-HOST = Agent(
-    name="Host Bot",
-    instructions=(
-        "You are a restaurant host. I will send you a JSON string like "
-        "'{\"event\":\"ARRIVAL\",\"party_size\":X,\"cust_id\":Y}'. "
-        "You must call the Python function `seat_customer(party_size, cust_id)` "
-        "and return its result as your final output—no other replies."
-    ),
-    tools=[seat_customer],       # SDK auto‑generates the schema from your function signature
-    model ="gpt-4o-mini",
-)
+menu_agent = Agent(name = "Chef_suggester",
+    instructions = "You are a helpful server that knows everything about our restaurant and is helping customer picking their food. You will start by politely"
+                    "introducing yourself as a food virtual assistant, and politely saying hi to the customer. The name of the customer can be found in the msg json file"
+                     "You will read the menu, and, based on what the customer is asking you, in the request key of the json file, you will provide the best recommendation from the menu."
+                     "If the customer is asking you inappopriate questions, just output 'unsuccessfull'. Answer in json format. '{food: <food_list [food_1, food_2,...,] or None if unsuccessfull>, status: <successfull or unsuccessfull>}'",
+    tools = [get_menu])
+
+entertainer_agent = Agent(name = "Entertainer",
+                          instructions = ("You are a helpful server that is keeping the customers busy while they wait."
+                          "You can not provide any discount or offer, but they can ask questions about the menu, which you can get from the"
+                          "get_menu functions. They can also ask you how long the wait is going to take. Their information is in check_wait_time"
+                          "If the user_status is 'queue', just provide the waiting time with kindness, based on the length. Otherwise, "
+                          "if the user_status is 'food' it means they are waiting on food. Check 'order' and provide a funny reference on"
+                          "their waiting time. For example 'your wait time for pasta is 5 minutes, it looks like the chef is putting sauce on it!' "),
+    tools = [get_menu,check_wait_time])
 
 
-ORDER_AGENT = Agent(
-    name="Order Bot",
-    model="gpt-4o-mini",
-    instructions=(
-        "You are the server taking orders. I will give you JSON like:\n"
-        "  {\"event\":\"ORDER\",\"table_id\":X,\"preferences\":\"…\"}\n"
-        "You have two tools:\n"
-        "  1) get_menu() → returns the menu\n"
-        "  2) place_order(table_id, item_ids)\n"
-        "If the user gave me preferences, call get_menu(), pick item IDs "
-        "based on those preferences, then call place_order().\n"
-        "If they already list item IDs, call place_order() directly.\n"
-        "Return *only* the output of the place_order tool call."
-    ),
-    tools=[get_menu, place_order],
-)
+customer_agent = Agent(name = "Customer",
+                          instructions = ("You are a customer and you are eating in an italian restaurant. Look at the menu using the get_menu function. If you already know what you want, just tell the waiter what you would like. "
+                          "Otherwise, give them a general indication, or ask for guidance based on your general liking, and they will pick their best for you."),
+    tools = [get_menu])
+
+
+
+
+def call_agent(runner, msg, class_agent = "wait"):
+    if class_agent == "host":
+        return runner.run_sync(entertainer_agent, msg)
+    
+    elif class_agent == "waiter":
+        return runner.run_sync(menu_agent, msg)
+    
+    elif class_agent == "customer":
+        return runner.run_sync(customer_agent, '')
+
+

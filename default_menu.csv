@@ -1,27 +1,26 @@
-id,category,name,description,prep_time,price
-1,Appetizer,Bruschetta,"Grilled bread rubbed with garlic and topped with chopped tomatoes, basil and olive oil",5,5.00
-2,Appetizer,Caprese Salad,"Slices of fresh mozzarella, tomatoes and basil, drizzled with olive oil",5,7.00
-3,Appetizer,Arancini,"Sicilian rice balls filled with ragù and peas, coated in breadcrumbs",10,6.50
-4,Appetizer,Prosciutto e Melone,"Thinly sliced cured ham served with fresh cantaloupe melon",2,8.00
-5,Appetizer,Burrata,"Creamy burrata cheese served with olive oil and sea salt",0,9.50
-6,First Course,Spaghetti Carbonara,"Pasta with pancetta, egg, pecorino cheese and black pepper",10,10.00
-7,First Course,Fettuccine Alfredo,"Fettuccine tossed in butter, Parmesan and cream sauce",10,11.00
-8,First Course,Lasagna,"Layers of pasta with ragù, béchamel sauce and parmesan",20,12.00
-9,First Course,Risotto alla Milanese,"Creamy saffron-infused risotto cooked to perfection",15,13.50
-10,First Course,Gnocchi al Pesto,"Soft potato gnocchi tossed in fresh basil pesto sauce",10,11.50
-11,Second Course,Pollo alla Cacciatora,"Chicken braised with tomatoes, onions, herbs and wine",30,14.00
-12,Second Course,Bistecca alla Fiorentina,"Grilled T‑bone steak, simply seasoned with salt and rosemary",20,25.00
-13,Second Course,Osso Buco,"Braised veal shanks with vegetables, white wine and broth",30,22.00
-14,Second Course,Saltimbocca alla Romana,"Veal cutlets topped with prosciutto and sage, pan‑fried",15,18.00
-15,Second Course,Branzino al Forno,"Whole sea bass baked with lemon, garlic and fresh herbs",25,19.00
-16,Wine,Chianti Classico,"Tuscany red wine with notes of cherry and violet",0,8.00
-17,Wine,Prosecco,"Sparkling white wine from Veneto, crisp and fruity",0,7.50
-18,Wine,Barolo,"Full‑bodied Piedmont red wine, rich and tannic",0,12.00
-19,Wine,Nero d’Avola,"Sicilian red wine, bold and blackberry‑like",0,9.00
-20,Wine,Pinot Grigio,"Light, crisp white wine with citrus and green apple notes",0,7.00
-21,Dessert,Tiramisu,"Layered dessert with coffee‑soaked ladyfingers and mascarpone",0,6.00
-22,Dessert,Panna Cotta,"Creamy cooked cream pudding served with berry coulis",5,5.50
-23,Dessert,Cannoli,"Crispy pastry tubes filled with sweet ricotta and chocolate chips",10,6.50
-24,Dessert,Gelato al Limone,"Smooth lemon gelato, tart and refreshing",0,5.00
-25,Dessert,Affogato al Caffè,"Vanilla gelato “drowned” in a shot of hot espresso",2,6.00
-
+id,category,name,prep_time,eat_time,price
+1,Appetizer,Bruschetta,5,4,5.0
+2,Appetizer,Caprese Salad,5,4,7.0
+3,Appetizer,Arancini,10,7,6.5
+4,Appetizer,Prosciutto e Melone,2,3,8.0
+5,Appetizer,Burrata,0,2,9.5
+6,First Course,Spaghetti Carbonara,10,12,10.0
+7,First Course,Fettuccine Alfredo,10,12,11.0
+8,First Course,Lasagna,20,20,12.0
+9,First Course,Risotto alla Milanese,15,16,13.5
+10,First Course,Gnocchi al Pesto,10,12,11.5
+11,Second Course,Pollo alla Cacciatora,30,29,14.0
+12,Second Course,Bistecca alla Fiorentina,20,22,25.0
+13,Second Course,Osso Buco,30,29,22.0
+14,Second Course,Saltimbocca alla Romana,15,19,18.0
+15,Second Course,Branzino al Forno,25,26,19.0
+16,Wine,Chianti Classico,0,10,8.0
+17,Wine,Prosecco,0,10,7.5
+18,Wine,Barolo,0,10,12.0
+19,Wine,Nero d’Avola,0,10,9.0
+20,Wine,Pinot Grigio,0,10,7.0
+21,Dessert,Tiramisu,0,5,6.0
+22,Dessert,Panna Cotta,5,6,5.5
+23,Dessert,Cannoli,10,8,6.5
+24,Dessert,Gelato al Limone,0,5,5.0
+25,Dessert,Affogato al Caffè,2,5,6.0
