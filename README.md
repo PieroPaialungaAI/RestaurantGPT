@@ -1,7 +1,7 @@
 
 # RestaurantGPT 🍽️🤖
 
-![Python Restaurant][image/Python_restaurant.png]
+![Python Restaurant](image/Python_restaurant.png)
 
 
 **RestaurantGPT** is a live simulation of a restaurant, developed with OpenAI Agents, where customers order, waiters take orders, and entertainers entertain guests, all powered by a Language Model (LLM) backend.
