@@ -1,21 +1,21 @@
 
 # RestaurantGPT 🍽️🤖
 
-**RestaurantGPT** is a live simulation of a restaurant where customers order, waiters take orders, and entertainers entertain guests — all powered by a Language Model (LLM) backend.
+**RestaurantGPT** is a live simulation of a restaurant, developed with OpenAI Agents, where customers order, waiters take orders, and entertainers entertain guests, all powered by a Language Model (LLM) backend.
 
-This project combines **Python**, **async agents**, **Tkinter GUI**, and **LLM reasoning** to create a dynamic restaurant environment where human-like decisions happen in real-time.
+This project combines **Python**, **Open AI agents**, **Tkinter GUI**, and **Object Oriented Programming** to create a dynamic restaurant environment where human-like decisions happen in real-time.
 
 ---
 
 ## ✨ Features
-
-- **Dynamic Customer Behavior**: Customers generate natural conversation with waiters using an LLM before ordering.
-- **Real-Time Event Simulation**: Cooking, eating, waiting, and customer departures happen based on real-world time.
-- **Smart Query Handling**: Customers waiting in line or at the table can ask questions ("How long until my food?"), and an entertainer agent answers them.
+- **Queue Handling**: we have X tables, and customers will come to sit, if they can. This logic is implemented.
+- **Dynamic Customer Behavior**: Customers generate natural conversation with waiters using an LLM to order or ask for suggestions.
+- **Real-Time Event Simulation**: Cooking, eating, waiting, and customer departures are simulated based on how long it will take for them to eat the food they ordered.
+- **Smart Query Handling**: Customers waiting in line or at the table can ask questions ("How long until my food?"), and an entertainer LLM agent answers them.
 - **Live GUI Dashboard**:
   - See which tables are free or occupied.
   - Watch customer interactions live.
-  - Real-time clock and event feed.
+  - Time clock and event feed.
 - **Log File**: All actions are logged cleanly in `restaurant_log.txt`.
 
 ---
@@ -24,7 +24,6 @@ This project combines **Python**, **async agents**, **Tkinter GUI**, and **LLM r
 
 ```
 RestaurantGPT/
-├── agents/             # Agent definitions (runner logic)
 ├── constants.py        # Menu items, customer names, and system constants
 ├── custom_agents.py    # Specialized agents (customer, waiter, entertainer)
 ├── llm_models.py       # Core restaurant simulation logic
@@ -75,7 +74,7 @@ python llm_models_gui.py
 ## 🛠️ Customization
 
 - **Menu**: Edit `constants.py` (see `MENU_FILE`).
-- **Arrival Rate**: Adjust `arrival_prob` in `llm_models.py`.
+- **Simulation parameters**: You can adjust all the parameters of the restaurant (e.g., number of tables) and the Menu through a .csv file.
 - **Customer Queries**: Tune `query_prob` to control how often customers ask questions.
 - **Tick Length**: Modify `tick_length` to speed up or slow down the simulation.
 
@@ -83,12 +82,51 @@ python llm_models_gui.py
 
 ## 📸 Preview
 
-| Tables | Live Events |
-|:------|:------------|
-| 🟢 Table 0: Free | [00:02] 🪑 Seated Alice at Table 2 |
-| 🔴 Table 1: Occupied by Bob | [00:04] 🍽️ Burger ready for Bob |
-| 🟢 Table 2: Free | [00:05] 💬 Bob asks: "When will my next dish be ready?" |
+[10:19:41] The customer Emma is talking to the waiter, saying this Here's the menu:
 
+### Appetizers
+- **Bruschetta** - $5.00
+- **Caprese Salad** - $7.00
+- **Arancini** - $6.50
+- **Prosciutto e Melone** - $8.00
+- **Burrata** - $9.50
+
+### First Courses
+- **Spaghetti Carbonara** - $10.00
+- **Fettuccine Alfredo** - $11.00
+- **Lasagna** - $12.00
+- **Risotto alla Milanese** - $13.50
+- **Gnocchi al Pesto** - $11.50
+
+### Second Courses
+- **Pollo alla Cacciatora** - $14.00
+- **Bistecca alla Fiorentina** - $25.00
+- **Osso Buco** - $22.00
+- **Saltimbocca alla Romana** - $18.00
+- **Branzino al Forno** - $19.00
+
+### Wines
+- **Chianti Classico** - $8.00
+- **Prosecco** - $7.50
+- **Barolo** - $12.00
+- **Nero d’Avola** - $9.00
+- **Pinot Grigio** - $7.00
+
+### Desserts
+- **Tiramisu** - $6.00
+- **Panna Cotta** - $5.50
+- **Cannoli** - $6.50
+- **Gelato al Limone** - $5.00
+- **Affogato al Caffè** - $6.00
+
+Do you know what you'd like, or would you like some recommendations based on your preferences?
+[10:19:42] The processed response from our LLM is {'food': None, 'status': 'unsuccessfull'}
+[10:19:42] [0000m] ❓ Customer 1: How long will the food take me?
+[10:19:42] [0000m] ➡️ Estimated food wait for customer 1: 15m
+[10:19:44] Our LLM took care of Emma with this: RunResult:
+- Last agent: Agent(name="Entertainer", ...)
+- Final output (str):
+    Hi Emma! It looks like the line is about 15 minutes right now. Just enough time to imagine the delicious Risotto alla Milanese waiting for you. Hang in there, it'll be worth the wait! 🍽️😊
 ---
 
 ## 🤔 Future Plans
@@ -96,6 +134,8 @@ python llm_models_gui.py
 - Animated progress bars for cooking and eating phases 🍔📊
 - Pause/Resume functionality from GUI
 - Different customer personalities (angry, impatient, polite)
+- Guardrails on LLM Agents for consistency
+- Customer satisfaction Agents after lunch.
 
 ---
 
