@@ -189,7 +189,7 @@ class Restaurant:
         while self.queue and self.open_tables():
             cid = self.queue.pop(0)
             cname = self.names[cid]
-            orders = self._pick_orders()
+            orders = self._pick_orders(cname=cname)
             table = min(self.open_tables(), key=lambda t: t.capacity)
             table.cust_name = cname
             plate, cook_time, eat_time = orders[0]

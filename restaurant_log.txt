@@ -1,17 +1,101 @@
-[09:40:45] The customer Emma is talking to the waiter, saying this I'd like to start with the **Bruschetta** as an appetizer, then have the **Lasagna** for the main course. For dessert, I'll go with the **Tiramisu**. Could I also have a glass of **Chianti Classico** with my meal, please?
-[09:40:48] The processed response from our LLM is {'food': ['Bruschetta', 'Lasagna', 'Tiramisu', 'Chianti Classico'], 'status': 'successfull'}
-[09:40:48] [0000m] ❓ Customer 1: How long will the food take me?
-[09:40:48] [0000m] ➡️ Estimated food wait for customer 1: 5m
-[09:40:50] Our LLM took care of Emma with this: RunResult:
+[10:16:39] The customer Emma is talking to the waiter, saying this I think I'll go for the **Bruschetta** to start, followed by the **Spaghetti Carbonara**. And for dessert, I'd love some **Tiramisu**. Could you please bring a glass of **Chianti Classico** as well? Thank you!
+[10:16:41] The processed response from our LLM is {'food': ['Bruschetta', 'Spaghetti Carbonara', 'Tiramisu', 'Chianti Classico'], 'status': 'successfull'}
+[10:16:41] [0000m] ❓ Customer 1: How long will the food take me?
+[10:16:41] [0000m] ➡️ Estimated food wait for customer 1: 5m
+[10:16:42] Our LLM took care of Emma with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hello Emma! The wait time is just about 5 minutes. Hang in there, and you'll be enjoying some delicious Bruschetta in no time! If you'd like to know more about the menu while you wait, feel free to ask.
+    Hi Emma! The current waiting time is about 5 minutes. You'll be enjoying our delightful food soon! 😊 If you have any questions about the menu while you wait, feel free to ask!
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
-[09:41:01] The customer Jacob is talking to the waiter, saying this The menu looks delicious! Here's what they have:
+[10:16:47] The customer Jacob is talking to the waiter, saying this Here's what I see on the menu:
+
+### Appetizers:
+- **Bruschetta** - $5
+- **Caprese Salad** - $7
+- **Arancini** - $6.50
+- **Prosciutto e Melone** - $8
+- **Burrata** - $9.50
+
+### First Courses:
+- **Spaghetti Carbonara** - $10
+- **Fettuccine Alfredo** - $11
+- **Lasagna** - $12
+- **Risotto alla Milanese** - $13.50
+- **Gnocchi al Pesto** - $11.50
+
+### Second Courses:
+- **Pollo alla Cacciatora** - $14
+- **Bistecca alla Fiorentina** - $25
+- **Osso Buco** - $22
+- **Saltimbocca alla Romana** - $18
+- **Branzino al Forno** - $19
+
+### Wines:
+- **Chianti Classico** - $8
+- **Prosecco** - $7.50
+- **Barolo** - $12
+- **Nero d’Avola** - $9
+- **Pinot Grigio** - $7
+
+### Desserts:
+- **Tiramisu** - $6
+- **Panna Cotta** - $5.50
+- **Cannoli** - $6.50
+- **Gelato al Limone** - $5
+- **Affogato al Caffè** - $6
+
+Do you know what you'd like, or do you need recommendations based on your preferences?
+[10:16:51] The processed response from our LLM is {'food': None, 'status': 'unsuccessful'}
+[10:16:51] [0001m] ❓ Customer 1: How long will the food take me?
+[10:16:51] [0001m] ➡️ Estimated food wait for customer 1: 4m
+[10:16:53] Our LLM took care of Emma with this: RunResult:
+- Last agent: Agent(name="Entertainer", ...)
+- Final output (str):
+    Hi Emma! It looks like the line is about 4 minutes long. Hang in there; you'll be enjoying our delicious food in no time! If you have any questions about the menu, feel free to ask. 😊
+- 1 new item(s)
+- 1 raw response(s)
+- 0 input guardrail result(s)
+- 0 output guardrail result(s)
+(See `RunResult` for more details)
+[10:16:56] The customer Liam is talking to the waiter, saying this I’d like to start with the **Bruschetta** as an appetizer. For the main course, I'll have the **Spaghetti Carbonara**. And to finish, could I get the **Tiramisu** for dessert? Thank you!
+[10:16:58] The processed response from our LLM is {'food': ['Bruschetta', 'Spaghetti Carbonara', 'Tiramisu'], 'status': 'successfull'}
+[10:16:58] [0002m] ❓ Customer 1: How long will the food take me?
+[10:16:58] [0002m] ➡️ Estimated food wait for customer 1: 3m
+[10:17:00] Our LLM took care of Emma with this: RunResult:
+- Last agent: Agent(name="Entertainer", ...)
+- Final output (str):
+    Hi Emma! The line will be about 3 minutes. Hang in there, and you'll be enjoying your Bruschetta soon! 😊 If you have any questions about the menu, feel free to ask!
+- 1 new item(s)
+- 1 raw response(s)
+- 0 input guardrail result(s)
+- 0 output guardrail result(s)
+(See `RunResult` for more details)
+[10:17:04] The customer Logan is talking to the waiter, saying this The menu here looks great! Here’s what I'm thinking:
+
+- **Appetizer**: Bruschetta
+- **First Course**: Risotto alla Milanese
+- **Second Course**: Osso Buco
+- **Wine**: Barolo
+- **Dessert**: Tiramisu
+
+Please go ahead with these selections!
+[10:17:09] The processed response from our LLM is {'food': ['Bruschetta', 'Risotto alla Milanese', 'Osso Buco', 'Barolo', 'Tiramisu'], 'status': 'successful'}
+[10:17:09] [0003m] ❓ Customer 4: How long will the food take me?
+[10:17:09] [0003m] ➡️ Estimated food wait for customer 4: 10m
+[10:17:10] Our LLM took care of Logan with this: RunResult:
+- Last agent: Agent(name="Entertainer", ...)
+- Final output (str):
+    Hi Logan! It looks like your wait time to get in is about 10 minutes. Hang in there—good things are coming your way, like a delicious glass of Barolo! 🍷 If you have any questions about our menu, feel free to ask.
+- 1 new item(s)
+- 1 raw response(s)
+- 0 input guardrail result(s)
+- 0 output guardrail result(s)
+(See `RunResult` for more details)
+[10:17:18] The customer Evelyn is talking to the waiter, saying this Here's the menu for the Italian restaurant:
 
 ### Appetizers
 - **Bruschetta**: $5.00
@@ -20,112 +104,106 @@
 - **Prosciutto e Melone**: $8.00
 - **Burrata**: $9.50
 
-### First Course
+### First Courses
 - **Spaghetti Carbonara**: $10.00
 - **Fettuccine Alfredo**: $11.00
 - **Lasagna**: $12.00
 - **Risotto alla Milanese**: $13.50
 - **Gnocchi al Pesto**: $11.50
 
-### Second Course
+### Second Courses
 - **Pollo alla Cacciatora**: $14.00
 - **Bistecca alla Fiorentina**: $25.00
 - **Osso Buco**: $22.00
 - **Saltimbocca alla Romana**: $18.00
 - **Branzino al Forno**: $19.00
 
-### Wine
+### Wines
 - **Chianti Classico**: $8.00
 - **Prosecco**: $7.50
 - **Barolo**: $12.00
 - **Nero d’Avola**: $9.00
 - **Pinot Grigio**: $7.00
 
-### Dessert
+### Desserts
 - **Tiramisu**: $6.00
 - **Panna Cotta**: $5.50
 - **Cannoli**: $6.50
 - **Gelato al Limone**: $5.00
 - **Affogato al Caffè**: $6.00
 
-If you have a preference or need guidance, feel free to let me know!
-[09:41:03] The processed response from our LLM is {'food': None, 'status': 'unsuccessfull'}
-[09:41:03] [0001m] ❓ Customer 1: How long will the food take me?
-[09:41:03] [0001m] ➡️ Estimated food wait for customer 1: 4m
-[09:41:05] Our LLM took care of Emma with this: RunResult:
+Do you know what you'd like to order, or do you need some guidance?
+[10:17:19] The processed response from our LLM is {'food': None, 'status': 'unsuccessfull'}
+[10:17:20] [0005m] ⏳ Queued Mia (#6) – waiting
+[10:17:20] [0005m] ❓ Customer 6: How long will I be in line?
+[10:17:20] [0005m] ➡️ Estimated wait for customer 6: 5m
+[10:17:21] Our LLM took care of Mia with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hi Emma! It looks like you're just 4 minutes away from getting in. Hang tight, and you'll be enjoying some delicious Bruschetta soon! 🍅 
+    Hi Mia! The line is moving pretty quickly today, so your wait time is just about 5 minutes. Hang in there, you'll be seated soon! If you have any questions about our menu, feel free to ask.
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
-[09:41:12] The customer Liam is talking to the waiter, saying this I would like to start with the **Bruschetta** as an appetizer, followed by the **Risotto alla Milanese** for the main course. For dessert, I'll have **Tiramisu**. Could you pair that with a glass of **Chianti Classico**? Thank you!
-[09:41:14] The processed response from our LLM is {'food': ['Bruschetta', 'Risotto alla Milanese', 'Tiramisu', 'Chianti Classico'], 'status': 'successful'}
-[09:41:14] [0002m] ❓ Customer 3: How long will the food take me?
-[09:41:14] [0002m] ➡️ Estimated food wait for customer 3: 10m
-[09:41:16] Our LLM took care of Liam with this: RunResult:
+[10:17:22] [0006m] ⏳ Queued Charlotte (#7) – waiting
+[10:17:22] [0006m] ❓ Customer 5: How long will the food take me?
+[10:17:22] [0006m] ➡️ Estimated food wait for customer 5: 3m
+[10:17:24] Our LLM took care of Evelyn with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hello Liam! It looks like there's about a 10-minute wait to get in. Thank you for your patience—soon you'll be enjoying some delicious food! If you have any questions about the menu while you wait, feel free to ask.
+    Hello Evelyn! 🌻 The line is moving smoothly today. Your wait time is approximately 3 minutes. Hang tight, and you'll be enjoying your meal in no time!
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
-[09:41:23] The customer Mason is talking to the waiter, saying this I'll have the Bruschetta to start, followed by Spaghetti Carbonara, and finish with a Tiramisu. Could I also have a glass of Chianti Classico, please? Thank you!
-[09:41:26] The processed response from our LLM is {'food': ['Bruschetta', 'Spaghetti Carbonara', 'Tiramisu', 'Chianti Classico'], 'status': 'successfull'}
-[09:41:26] [0003m] ❓ Customer 4: How long will the food take me?
-[09:41:26] [0003m] ➡️ Estimated food wait for customer 4: 5m
-[09:41:28] Our LLM took care of Mason with this: RunResult:
+[10:17:25] [0007m] ⏳ Queued Liam (#8) – waiting
+[10:17:25] [0007m] ❓ Customer 7: How long will I be in line?
+[10:17:25] [0007m] ➡️ Estimated wait for customer 7: 9m
+[10:17:26] Our LLM took care of Charlotte with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hello Mason! 🌟
-    
-    It looks like you're in line, and the wait time is about 5 minutes. Just a little longer, and you'll be enjoying some delicious food like that scrumptious Bruschetta! 🎉
-    
-    Feel free to ask me if you have any questions about the menu while you wait. 🍴
+    Hello Charlotte! It looks like there’s a short wait of about 9 minutes before you can get in. Hang in there, and you’ll be enjoying your time with us soon! If you have any questions about our menu or anything else, feel free to ask. 😊
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
-[09:41:35] The customer Evelyn is talking to the waiter, saying this I’d like to start with the **Bruschetta**, followed by the **Spaghetti Carbonara** for the main course, and a glass of **Chianti Classico** to accompany the meal. For dessert, I'll have the **Tiramisu**. Thank you!
-[09:41:38] The processed response from our LLM is {'food': ['Bruschetta', 'Spaghetti Carbonara', 'Chianti Classico', 'Tiramisu'], 'status': 'successful'}
-[09:41:43] [0005m] ⏳ Queued Mia (#6) – waiting
-[09:41:43] [0005m] ❓ Customer 6: How long will I be in line?
-[09:41:43] [0005m] ➡️ Estimated wait for customer 6: 5m
-[09:41:45] Our LLM took care of Mia with this: RunResult:
+[10:17:27] [0008m] ⏳ Queued Oliver (#9) – waiting
+[10:17:28] [0009m] ⏳ Queued Alexander (#10) – waiting
+[10:17:28] [0009m] ❓ Customer 6: How long will I be in line?
+[10:17:28] [0009m] ➡️ Estimated wait for customer 6: 5m
+[10:17:30] Our LLM took care of Mia with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hello Mia! It looks like there's a bit of a line, but not to worry—your table will be ready in about 5 minutes. Hang in there, and you'll be enjoying some delicious food soon! 😊
+    Hi Mia! The line should be moving quickly, and you'll be in in about 5 minutes. Hang tight; you're almost there! 😊
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
-[09:41:50] [0006m] ⏳ Queued Charlotte (#7) – waiting
-[09:41:50] [0006m] ❓ Customer 5: How long will the food take me?
-[09:41:50] [0006m] ➡️ Estimated food wait for customer 5: 3m
-[09:41:52] Our LLM took care of Evelyn with this: RunResult:
+[10:17:31] [0010m] ⏳ Queued James (#11) – waiting
+[10:17:31] [0010m] ❓ Customer 2: How long will the food take me?
+[10:17:31] [0010m] ➡️ Estimated food wait for customer 2: 2m
+[10:17:32] Our LLM took care of Jacob with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hello Evelyn! The wait to get in is approximately 3 minutes. Just hang in there; you'll be seated before you know it! If you have any questions about the menu while you wait, feel free to ask!
+    Hi Jacob! It looks like you're in line, and the wait time is just about 2 minutes. Almost like waiting for your toast to pop up in the morning! Hang tight, you're almost in! 🍞😊
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
-[09:41:57] [0007m] ⏳ Queued Liam (#8) – waiting
-[09:41:57] [0007m] ❓ Customer 7: How long will I be in line?
-[09:41:57] [0007m] ➡️ Estimated wait for customer 7: 9m
-[09:41:58] Our LLM took care of Charlotte with this: RunResult:
+[10:17:33] [0011m] ❓ Customer 8: How long will I be in line?
+[10:17:33] [0011m] ➡️ Estimated wait for customer 8: 13m
+[10:17:35] Our LLM took care of Liam with this: RunResult:
 - Last agent: Agent(name="Entertainer", ...)
 - Final output (str):
-    Hello, Charlotte! It looks like the line has a wait time of about 9 minutes. Thank you for your patience, and we’ll have you seated soon! If you have any questions about our menu, feel free to ask. 🍽️
+    Hello Liam! The current wait time is about 13 minutes. We appreciate your patience, and we promise it'll be worth the wait! If you have any questions about the menu, feel free to ask.
 - 1 new item(s)
 - 1 raw response(s)
 - 0 input guardrail result(s)
 - 0 output guardrail result(s)
 (See `RunResult` for more details)
+[10:17:36] [0012m] ⏳ Queued Elijah (#12) – waiting
