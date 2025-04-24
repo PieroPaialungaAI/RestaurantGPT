@@ -4,6 +4,7 @@ import math
 import sys
 from utils import *
 from constants import *
+from naive_models import * 
 
 if __name__ == "__main__":
     random.seed(42)
